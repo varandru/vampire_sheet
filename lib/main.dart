@@ -1,4 +1,4 @@
-import 'character_view.dart';
+import 'package:vampire_sheet/routing.dart';
 import 'package:flutter/material.dart';
 
 void main() async {

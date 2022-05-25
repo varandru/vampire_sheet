@@ -1,6 +1,5 @@
 class CharacterInfo {
   CharacterInfo(
-    this.databaseId,
     this.characterName, {
     this.nature = "",
     this.demeanor = "",
@@ -9,7 +8,7 @@ class CharacterInfo {
     this.concept = "",
     this.chronicle,
     this.sire,
-  });
+  }) : databaseId = 0;
 
   int databaseId;
   String characterName;

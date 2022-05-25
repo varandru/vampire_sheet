@@ -1,37 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:vampire_sheet/character_create_view.dart';
 import 'package:vampire_sheet/character_info.dart';
 import 'package:vampire_sheet/database.dart';
 
-Future<VampireDatabase> database = createVampireDatabase();
-
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        brightness: Brightness.dark,
-        primarySwatch: Colors.red,
-      ),
-      home: const MyHomePage(
-        title: 'Vampire Character Sheet',
-      ),
-    );
-  }
-}
-
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
-
-  final String title;
+class CharactersView extends StatelessWidget {
+  const CharactersView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(title: const Text('Character Selection')),
         body: FutureBuilder(
           future: createVampireDatabase().then((db) => db.getCharacters()),
           builder: ((context, snapshot) {
@@ -52,7 +31,13 @@ class MyHomePage extends StatelessWidget {
           }),
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    maintainState: false,
+                    builder: (context) => const CharacterCreateView()));
+          },
           backgroundColor: Colors.red,
           child: const Icon(Icons.add),
         ),
